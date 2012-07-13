@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="content_negotiation" status="experimental" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Content Nagotiation</name>
+	<description>Create additional page templates to serve different content types from a single Symphony page.</description>
+	<repo type="github">https://github.com/klaftertief/content_negotiation</repo>
+	<types>
+		<type>Workflow</type>
+	</types>
+	<authors>
+		<author>
+			<name github="klaftertief" symphony="klaftertief">Jonas Coch</name>
+			<website>http://klaftertief.de/</website>
+		</author>
+	</authors>
+	<releases>
+		<release version="0.1" date="2012-07-13" min="2.3" max="2.3.x">
+			- Initial experimental version
+		</release>
+	</releases>
+</extension>
