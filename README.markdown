@@ -44,7 +44,7 @@ The extension expects the format to get passed as the `content-type` parameter. 
 
 This extension is in an experimental state. Use at your own risk.
 
-There are som things not working and the inner and outer workings might change without being backwards compatible.
+There are some things not working and the inner and outer workings might change without being backwards compatible.
 
 ### What doesn't work yet
 
