@@ -19,6 +19,11 @@
 		 */
 		protected $_headers = array();
 
+		/**
+		 * @var  string  The negotiated format
+		 */
+		protected $_format = null;
+
 
 		public function __construct() {
 			parent::__construct();
@@ -54,6 +59,11 @@
 					'page' => '/frontend/',
 					'delegate' => 'FrontendPreRenderHeaders',
 					'callback' => 'setHeaders'
+				),
+				array(
+					'page' => '/frontend/',
+					'delegate' => 'FrontendParamsResolve',
+					'callback' => 'addParams'
 				)
 			);
 		}
@@ -147,10 +157,12 @@
 				$path_parts = pathinfo($context['page_data']['filelocation']);
 				$file = $path_parts['dirname'] . '/' . $path_parts['filename'] . '.' . $requested_format . '.' . $path_parts['extension'];
 				if (file_exists($file)) {
-					// Let the setHeaders know to set new content type headers
+					// Save the headers for setHeaders()
 					$this->_headers = array(
 						'Content-Type' => $negotiable_formats[$requested_format]
 					);
+					// ...and the format for addParams()
+					$this->_format = $requested_format;
 					// Set new template file location
 					$context['page_data']['filelocation'] = $file;
 				}
@@ -165,5 +177,10 @@
 			}
 		}
 
+		public function addParams($context) {
+			if (!is_null($this->_format)) {
+				$context['params']['content-type'] = $this->_format;
+			}
+		}
 	}
 
