@@ -77,11 +77,12 @@
 				return General::sanitize($_REQUEST['content-type']);
 			}
 
-			// Otherwise, check the HTTP_ACCEPT
-			if (isset($_SERVER['HTTP_ACCEPT'])) {
+			// Otherwise, check the HTTP_ACCEPT or CONTENT_TYPE header
+			if (isset($_SERVER['CONTENT_TYPE']) || isset($_SERVER['HTTP_ACCEPT'])) {
+				$content_type = $_SERVER['CONTENT_TYPE'] ? $_SERVER['CONTENT_TYPE'] : $_SERVER['HTTP_ACCEPT'];
 
 				// Split the Accept header and build an array of quality scores for each format
-				$fragments = new CachingIterator(new ArrayIterator(preg_split('/[,;]/', $_SERVER['HTTP_ACCEPT'])));
+				$fragments = new CachingIterator(new ArrayIterator(preg_split('/[,;]/', $content_type)));
 				$acceptable = array();
 				$next_is_quality = false;
 				foreach ($fragments as $fragment) {
