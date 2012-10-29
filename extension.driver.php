@@ -180,7 +180,7 @@
 		public function addParams($context) {
 			// Set HTTP request method
 			$context['params']['request-method'] = $_SERVER['REQUEST_METHOD'];
-			// Set requeted content type
+			// Set requested content type
 			if (!is_null($this->_format)) {
 				$context['params']['content-type'] = $this->_format;
 			}
