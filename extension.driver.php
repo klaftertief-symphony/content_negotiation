@@ -172,7 +172,7 @@
 		public function setHeaders(array $context = NULL) {
 			if (!empty($this->_headers)) {
 				foreach ($this->_headers as $name => $value) {
-					Frontend::Page()->addHeaderToPage($name, $value);
+					Frontend::Page()->addHeaderToPage($name, $value . '; charset=utf-8');
 				}
 			}
 		}
